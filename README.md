@@ -8,11 +8,13 @@ so when we try to apply one hot ending i.e converting the categories into numeri
 1. Firstly, convert the text to lower and then sort the words in ascending form i.e A-Z. Now we'll have "can, eat,  i, pizza, the".
 2. Give a numerical label as we can see can is at 0th position and eat is at 1 same way, assign the values like can:0, i:2, eat:1, the:4, pizza:3.
 3. Transform to binary vectors. 
-`[[1. 0. 0. 0. 0.] #can
- [0. 0. 1. 0. 0.] #i
- [0. 1. 0. 0. 0.] #eat
- [0. 0. 0. 0. 1.] #the
- [0. 0. 0. 1. 0.]] #pizza`
+`[
+ can: [1. 0. 0. 0. 0.] 
+ i: [0. 0. 1. 0. 0.] 
+ eat: [0. 1. 0. 0. 0.] 
+ the: [0. 0. 0. 0. 1.] 
+ pizza: [0. 0. 0. 1. 0.]
+ ]`
  
 Got some idea? Are you wondering whats Categorical variable now?<br>
 Well, Categorical variables are basically the fixed value number on the basis of some qualitative properties. Such as Sex of an individual as it can be either male or female or trans. Weather is also one example as it can be sunny, cloudy, or rainy. 

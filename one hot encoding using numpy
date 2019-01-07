@@ -1,30 +1,44 @@
-from numpy import array
-doc1 = "Can I eat the Pizza".lower()
-doc2 = "You can eat the Pizza".lower()
-doc1 = doc1.split()
-doc2 = doc2.split()
-doc1_array = array(doc1)
-doc2_array = array(doc2)
-doc3 = doc1+doc2
-doc3 = set(doc3)
-doc4 = dict()
-for i in doc3:
-    ids = []
-    for j in doc3:
-        if i == j:
-            ids.append(1)
-        else:
-            ids.append(0)
-            doc4[i] = ids
-for i,w in enumerate(doc4):
-    print (i,w)
+import numpy as np
+docs = "Can I eat the Pizza".lower().split()
+doc1 = set(docs)
+doc1 = sorted(doc1)
+print ("\nvalues: ", doc1)
+
+integer_encoded = []
+for i in docs:
+    v = np.where( np.array(doc1) == i)[0][0]
+    integer_encoded.append(v)
+print ("\ninteger encoded: ",integer_encoded)
+
+def get_vec(len_doc,word):
+    empty_vector = [0] * len_doc
+    vect = 0
+    find = np.where( np.array(doc1) == word)[0][0]
+    empty_vector[find] = 1
+    return empty_vector
+
+def get_matrix(doc1):
+    mat = []
+    len_doc = len(doc1)
+    for i in docs:
+        vec = get_vec(len_doc,i)
+        mat.append(vec)
+        
+    return np.asarray(mat)
+
+print ("\nMATRIX:")
+print (get_matrix(doc1))
     
 """
 OUTPUT: 
-0 can
-1 pizza
-2 eat
-3 you
-4 the
-5 i
+values:  ['can', 'eat', 'i', 'pizza', 'the']
+
+integer encoded:  [0, 2, 1, 4, 3]
+
+MATRIX:
+[[1 0 0 0 0]
+ [0 0 1 0 0]
+ [0 1 0 0 0]
+ [0 0 0 0 1]
+ [0 0 0 1 0]]
 """
